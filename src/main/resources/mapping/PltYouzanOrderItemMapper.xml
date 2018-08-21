@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootpro.mapper.PltYouzanOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.example.springbootpro.entity.PltYouzanOrderItem" >
+    <result column="oid" property="oid" jdbcType="VARCHAR" />
+    <result column="tid" property="tid" jdbcType="VARCHAR" />
+    <result column="dp_id" property="dpId" jdbcType="VARCHAR" />
+    <result column="customerno" property="customerno" jdbcType="VARCHAR" />
+    <result column="total_fee" property="totalFee" jdbcType="DECIMAL" />
+    <result column="discount_fee" property="discountFee" jdbcType="DECIMAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="payment" property="payment" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_state" property="receiverState" jdbcType="VARCHAR" />
+    <result column="receiver_city" property="receiverCity" jdbcType="VARCHAR" />
+    <result column="receiver_district" property="receiverDistrict" jdbcType="VARCHAR" />
+    <result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="receiver_zip" property="receiverZip" jdbcType="VARCHAR" />
+    <result column="mobile" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="num_iid" property="numIid" jdbcType="VARCHAR" />
+    <result column="pic_path" property="picPath" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="VARCHAR" />
+    <result column="outer_iid" property="outerIid" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="last_sync" property="lastSync" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.springbootpro.entity.PltYouzanOrderItem" extends="BaseResultMap" >
+    <result column="sku_properties_name" property="skuPropertiesName" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sku_properties_name
+  </sql>
+  <insert id="insert" parameterType="com.example.springbootpro.entity.PltYouzanOrderItem" >
+    replace into plt_youzan_order_item (oid, tid, dp_id,
+      customerno, total_fee, discount_fee, 
+      pay_time, price, payment, 
+      num, title, receiver_name, 
+      receiver_state, receiver_city, receiver_district, 
+      receiver_address, receiver_zip, mobile,
+      num_iid, pic_path, sku_id, 
+      outer_iid, created, modified, 
+      last_sync, source, status, 
+      refund_amount, sku_properties_name)
+    values (#{oid,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{dpId,jdbcType=VARCHAR}, 
+      #{customerno,jdbcType=VARCHAR}, #{totalFee,jdbcType=DECIMAL}, #{discountFee,jdbcType=DECIMAL}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{price,jdbcType=DECIMAL}, #{payment,jdbcType=DECIMAL}, 
+      #{num,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, 
+      #{receiverState,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, 
+      #{receiverAddress,jdbcType=VARCHAR}, #{receiverZip,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, 
+      #{numIid,jdbcType=VARCHAR}, #{picPath,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, 
+      #{outerIid,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, 
+      #{lastSync,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{refundAmount,jdbcType=DECIMAL}, #{skuPropertiesName,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springbootpro.entity.PltYouzanOrderItem" >
+    insert into plt_youzan_order_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="customerno != null" >
+        customerno,
+      </if>
+      <if test="totalFee != null" >
+        total_fee,
+      </if>
+      <if test="discountFee != null" >
+        discount_fee,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverState != null" >
+        receiver_state,
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city,
+      </if>
+      <if test="receiverDistrict != null" >
+        receiver_district,
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address,
+      </if>
+      <if test="receiverZip != null" >
+        receiver_zip,
+      </if>
+      <if test="receiverMobile != null" >
+        mobile,
+      </if>
+      <if test="numIid != null" >
+        num_iid,
+      </if>
+      <if test="picPath != null" >
+        pic_path,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="outerIid != null" >
+        outer_iid,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="lastSync != null" >
+        last_sync,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="skuPropertiesName != null" >
+        sku_properties_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="dpId != null" >
+        #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerno != null" >
+        #{customerno,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null" >
+        #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null" >
+        #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="numIid != null" >
+        #{numIid,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="outerIid != null" >
+        #{outerIid,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSync != null" >
+        #{lastSync,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="skuPropertiesName != null" >
+        #{skuPropertiesName,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

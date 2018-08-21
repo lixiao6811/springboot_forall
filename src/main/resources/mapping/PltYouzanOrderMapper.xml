@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootpro.mapper.PltYouzanOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.springbootpro.entity.PltYouzanOrder" >
+    <id column="tid" property="tid" jdbcType="VARCHAR" />
+    <result column="dp_id" property="dpId" jdbcType="VARCHAR" />
+    <result column="customerno" property="customerno" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="total_fee" property="totalFee" jdbcType="DECIMAL" />
+    <result column="post_fee" property="postFee" jdbcType="DECIMAL" />
+    <result column="consign_time" property="consignTime" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="payment" property="payment" jdbcType="DECIMAL" />
+    <result column="discount_fee" property="discountFee" jdbcType="DECIMAL" />
+    <result column="adjust_fee" property="adjustFee" jdbcType="DECIMAL" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_state" property="receiverState" jdbcType="VARCHAR" />
+    <result column="receiver_city" property="receiverCity" jdbcType="VARCHAR" />
+    <result column="receiver_district" property="receiverDistrict" jdbcType="VARCHAR" />
+    <result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="receiver_zip" property="receiverZip" jdbcType="VARCHAR" />
+    <result column="receiver_mobile" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="buyer_memo" property="buyerMemo" jdbcType="VARCHAR" />
+    <result column="seller_memo" property="sellerMemo" jdbcType="VARCHAR" />
+    <result column="seller_flag" property="sellerFlag" jdbcType="VARCHAR" />
+    <result column="last_sync" property="lastSync" jdbcType="TIMESTAMP" />
+    <result column="constant" property="constant" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, dp_id, customerno, created, status, type, pay_time, total_fee, post_fee, consign_time, 
+    modified, price, payment, discount_fee, adjust_fee, receiver_name, receiver_state, 
+    receiver_city, receiver_district, receiver_address, receiver_zip, receiver_mobile, 
+    num, buyer_memo, seller_memo, seller_flag, last_sync, constant, source, mobile
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from plt_youzan_order
+    where tid = #{tid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from plt_youzan_order
+    where tid = #{tid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springbootpro.entity.PltYouzanOrder" >
+    replace into plt_youzan_order (tid, dp_id, customerno,
+      created, status, type, 
+      pay_time, total_fee, post_fee, 
+      consign_time, modified, price, 
+      payment, discount_fee, adjust_fee, 
+      receiver_name, receiver_state, receiver_city, 
+      receiver_district, receiver_address, receiver_zip, 
+      receiver_mobile, num, buyer_memo, 
+      seller_memo, seller_flag, last_sync, 
+      constant, source, mobile
+      )
+    values (#{tid,jdbcType=VARCHAR}, #{dpId,jdbcType=VARCHAR}, #{customerno,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{totalFee,jdbcType=DECIMAL}, #{postFee,jdbcType=DECIMAL}, 
+      #{consignTime,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, #{price,jdbcType=DECIMAL}, 
+      #{payment,jdbcType=DECIMAL}, #{discountFee,jdbcType=DECIMAL}, #{adjustFee,jdbcType=DECIMAL}, 
+      #{receiverName,jdbcType=VARCHAR}, #{receiverState,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, 
+      #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, #{receiverZip,jdbcType=VARCHAR}, 
+      #{receiverMobile,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{buyerMemo,jdbcType=VARCHAR}, 
+      #{sellerMemo,jdbcType=VARCHAR}, #{sellerFlag,jdbcType=VARCHAR}, #{lastSync,jdbcType=TIMESTAMP}, 
+      #{constant,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}
+      )
+
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springbootpro.entity.PltYouzanOrder" >
+    insert into plt_youzan_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="customerno != null" >
+        customerno,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="totalFee != null" >
+        total_fee,
+      </if>
+      <if test="postFee != null" >
+        post_fee,
+      </if>
+      <if test="consignTime != null" >
+        consign_time,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="discountFee != null" >
+        discount_fee,
+      </if>
+      <if test="adjustFee != null" >
+        adjust_fee,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverState != null" >
+        receiver_state,
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city,
+      </if>
+      <if test="receiverDistrict != null" >
+        receiver_district,
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address,
+      </if>
+      <if test="receiverZip != null" >
+        receiver_zip,
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="buyerMemo != null" >
+        buyer_memo,
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo,
+      </if>
+      <if test="sellerFlag != null" >
+        seller_flag,
+      </if>
+      <if test="lastSync != null" >
+        last_sync,
+      </if>
+      <if test="constant != null" >
+        constant,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="dpId != null" >
+        #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerno != null" >
+        #{customerno,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="consignTime != null" >
+        #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null" >
+        #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustFee != null" >
+        #{adjustFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null" >
+        #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="buyerMemo != null" >
+        #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerFlag != null" >
+        #{sellerFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSync != null" >
+        #{lastSync,jdbcType=TIMESTAMP},
+      </if>
+      <if test="constant != null" >
+        #{constant,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springbootpro.entity.PltYouzanOrder" >
+    update plt_youzan_order
+    <set >
+      <if test="dpId != null" >
+        dp_id = #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerno != null" >
+        customerno = #{customerno,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalFee != null" >
+        total_fee = #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="postFee != null" >
+        post_fee = #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="consignTime != null" >
+        consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null" >
+        discount_fee = #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="adjustFee != null" >
+        adjust_fee = #{adjustFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        receiver_state = #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistrict != null" >
+        receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null" >
+        receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="buyerMemo != null" >
+        buyer_memo = #{buyerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerFlag != null" >
+        seller_flag = #{sellerFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSync != null" >
+        last_sync = #{lastSync,jdbcType=TIMESTAMP},
+      </if>
+      <if test="constant != null" >
+        constant = #{constant,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springbootpro.entity.PltYouzanOrder" >
+    update plt_youzan_order
+    set dp_id = #{dpId,jdbcType=VARCHAR},
+      customerno = #{customerno,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      total_fee = #{totalFee,jdbcType=DECIMAL},
+      post_fee = #{postFee,jdbcType=DECIMAL},
+      consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=DECIMAL},
+      discount_fee = #{discountFee,jdbcType=DECIMAL},
+      adjust_fee = #{adjustFee,jdbcType=DECIMAL},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_state = #{receiverState,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      buyer_memo = #{buyerMemo,jdbcType=VARCHAR},
+      seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      seller_flag = #{sellerFlag,jdbcType=VARCHAR},
+      last_sync = #{lastSync,jdbcType=TIMESTAMP},
+      constant = #{constant,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR}
+    where tid = #{tid,jdbcType=VARCHAR}
+  </update>
+</mapper>

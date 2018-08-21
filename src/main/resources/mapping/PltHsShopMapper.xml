@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootpro.mapper.PltHsShopMapper" >
+  <resultMap id="BaseResultMap" type="com.example.springbootpro.entity.PltHsShop" >
+    <id column="OrgCode" property="orgcode" jdbcType="VARCHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+    <result column="OrgType" property="orgtype" jdbcType="VARCHAR" />
+    <result column="OrgClass" property="orgclass" jdbcType="VARCHAR" />
+    <result column="AccLevel" property="acclevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OrgCode, OrgName, OrgType, OrgClass, AccLevel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from plt_hs_shop
+    where OrgCode = #{orgcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from plt_hs_shop
+    where OrgCode = #{orgcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.springbootpro.entity.PltHsShop" >
+    insert into plt_hs_shop (OrgCode, OrgName, OrgType, 
+      OrgClass, AccLevel)
+    values (#{orgcode,jdbcType=VARCHAR}, #{orgname,jdbcType=VARCHAR}, #{orgtype,jdbcType=VARCHAR}, 
+      #{orgclass,jdbcType=VARCHAR}, #{acclevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.springbootpro.entity.PltHsShop" >
+    insert into plt_hs_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgcode != null" >
+        OrgCode,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+      <if test="orgtype != null" >
+        OrgType,
+      </if>
+      <if test="orgclass != null" >
+        OrgClass,
+      </if>
+      <if test="acclevel != null" >
+        AccLevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgcode != null" >
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null" >
+        #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgclass != null" >
+        #{orgclass,jdbcType=VARCHAR},
+      </if>
+      <if test="acclevel != null" >
+        #{acclevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springbootpro.entity.PltHsShop" >
+    update plt_hs_shop
+    <set >
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgtype != null" >
+        OrgType = #{orgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="orgclass != null" >
+        OrgClass = #{orgclass,jdbcType=VARCHAR},
+      </if>
+      <if test="acclevel != null" >
+        AccLevel = #{acclevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OrgCode = #{orgcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springbootpro.entity.PltHsShop" >
+    update plt_hs_shop
+    set OrgName = #{orgname,jdbcType=VARCHAR},
+      OrgType = #{orgtype,jdbcType=VARCHAR},
+      OrgClass = #{orgclass,jdbcType=VARCHAR},
+      AccLevel = #{acclevel,jdbcType=VARCHAR}
+    where OrgCode = #{orgcode,jdbcType=VARCHAR}
+  </update>
+</mapper>
