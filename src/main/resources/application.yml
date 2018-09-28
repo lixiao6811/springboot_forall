@@ -42,9 +42,5 @@ sign:
    app_key:
    app_secret:
 
-youzan:
-   token.get.url: https://open.youzan.com/oauth/token
-   client_id:
-   client_secret:
-   grant_type: silent
-   kdt_id:
+scheduled:
+  timing: 0 0 01 * * ?
