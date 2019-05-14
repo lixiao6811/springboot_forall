@@ -16,7 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper;//这里会报错，但是并不会影响
+    private UserMapper userMapper;//这里会报错，但是并不会影响,警告级别问题
 
     @Override
     public int addUser(User user) {
@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUser(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
+        //todo
         return userMapper.selectAllUser();
     }
 }

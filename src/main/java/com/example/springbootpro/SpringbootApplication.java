@@ -13,11 +13,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * 3，@MapperScan("com.example.springbootpro.mapper") 指定mapper路径
  */
 @EnableScheduling
+//@ServletComponentScan
 @SpringBootApplication
-@ServletComponentScan
-@MapperScan("com.example.springbootpro.mapper")//将项目中对应的mapper类的路径加进来就可以了
-public class SpringbootproApplication {
+public class SpringbootApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootproApplication.class, args);
+		SpringApplication.run(SpringbootApplication.class, args);
 	}
 }

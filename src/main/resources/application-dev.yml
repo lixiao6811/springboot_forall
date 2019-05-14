@@ -1,0 +1,75 @@
+spring:
+  datasource:
+    ccms:
+      url: jdbc:mysql://127.0.0.1:3306/demo_pro?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      maxIdle: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+    benefit:
+      url: jdbc:mysql://127.0.0.1:3306/demo_pro?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: root
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+
+
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+sign:
+  app_key: 1000002
+  app_secret: 32bbd3f274f232754d424d443e80fbe5
+  memberAppsecret: n5gu4a&a5togt1zqa^fs$$8lr6l^u*nc
+scheduled:
+  timing: 0 */1 * * * ?
+  pointJob: 0 */100 * * * ?
+  pushMember: 0 */200 * * * ?
+  pointMember: 0 */100 * * * ?
+logging:
+  level:
+    com.example.springbootpro.mapper: DEBUG
+    com.example.springbootpro.benefitMapper: DEBUG
+loyalty:
+  buildCardUrl: http://ual.tecachcache.saasproj.shuyun.com/loyalty2-mg/1.0/if/members
+  memberAndGradeUrl: http://ual.teachecache.saasproj.shuyun.com/loyalty2-mg/1.0
+  secret: asdfghjksl12
+  etoUrl: https://ecrm-cc-tst.woaap.com/api/send-template-message
+ur:
+  sendCoupon: https://stagig-api.cache-cache.cn/restur/createCoupon
+  postCustomer: https://sting-api.cache-cache.cn/restur/postCustomer
+  keyId: 7c8a86a0-df8-4caa-a77f-464b3f9493ec
+benefit:
+  createCoupon: http://benefit.pecacache.saasproj.shuyun.com/benefit/1.0/benefit/platform/userBcode/send

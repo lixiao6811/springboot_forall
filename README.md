@@ -8,3 +8,6 @@ me first repository
 5，接口访问
 6，filter统一鉴权
 7，一些常用工具，缓存，表情过滤
+8,多数据源
+9，分页插件
+10，swagger文档

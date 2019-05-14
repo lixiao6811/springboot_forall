@@ -1,0 +1,77 @@
+spring:
+  datasource:
+    ccms:
+      url: jdbc:mysql://127.0.0.1:3306/tecachecache_loyalty2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      maxIdle: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+    benefit:
+      url: jdbc:mysql://127.0.0.1:3306/tecachecache_loyalty2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      username: root
+      password: 123456
+      url: jdbc:mysql://rm-bp13z2fw53w4w8kfm.mysql.rds.aliyuncs.com:3306/benefit?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+
+
+#pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+sign:
+  app_key: 1000001
+  app_secret: 32bbd3f271f236754d424d443e80fbe4
+  memberAppsecret: n#gu1a&a5togt1zqa^fs$$8lrgl^u*nc
+scheduled:
+  pointJob: 0 */100 * * * ?
+  pushMember: 0 */200 * * * ?
+  pointMember: 0 */100 * * * ?
+logging:
+  level:
+    com.example.springbootpro.mapper: DEBUG
+    com.example.springbootpro.benefitMapper: DEBUG
+loyalty:
+  buildCardUrl: http://ual.tecacecache.saasproj.shuyun.com/loyalty2-mg/1.0/if/members
+  memberAndGradeUrl: http://ual.teachecache.saasproj.shuyun.com/loyalty2-mg/1.0
+  secret: asdfghjksl12
+  etoUrl: https://ecrm-cc-test.waap.com/api/send-template-message
+ur:
+  sendCoupon: https://staging-ap.cache-cache.cn/restur/createCoupon
+  postCustomer: https://staging-pi.cache-cache.cn/restur/postCustomer
+  keyId: 7c8a86a0-dfe8-4aa-a77f-464b3f9493ec
+benefit:
+  createCoupon: http://beneit.tecachecache.saasproj.shuyun.com/benefit/1.0/benefit/platform/userBcode/send
