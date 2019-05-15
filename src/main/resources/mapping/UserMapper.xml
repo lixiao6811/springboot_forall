@@ -2,21 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.springbootpro.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.example.springbootpro.entity.User" >
-    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <id column="userId" property="userId" jdbcType="VARCHAR" />
     <result column="userName" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="ff_age" property="ff_age" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectAllUser"  resultMap="BaseResultMap">
+  <sql id="Base_Column_List" >
+    userId, userName, password, phone, ff_age
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllUser" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
-    <include refid="Column_List"/>
+    <include refid="Base_Column_List" />
     from user
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where userId = #{userId,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.example.springbootpro.entity.User" >
     insert into user (userId, userName, password, 
-      phone)
+      phone, ff_age)
     values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR})
+      #{phone,jdbcType=VARCHAR}, #{ff_age,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.springbootpro.entity.User" >
     insert into user
@@ -33,6 +47,9 @@
       <if test="phone != null" >
         phone,
       </if>
+      <if test="ff_age != null" >
+        ff_age,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -47,7 +64,35 @@
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
+      <if test="ff_age != null" >
+        #{ff_age,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.springbootpro.entity.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ff_age != null" >
+        ff_age = #{ff_age,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.springbootpro.entity.User" >
+    update user
+    set userName = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      ff_age = #{ff_age,jdbcType=VARCHAR}
+    where userId = #{userId,jdbcType=VARCHAR}
+  </update>
 </mapper>

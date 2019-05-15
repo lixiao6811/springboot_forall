@@ -9,6 +9,8 @@ public class User {
 
     private String phone;
 
+    private String ff_age;
+
     public String getUserId() {
         return userId;
     }
@@ -39,5 +41,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getFf_age() {
+        return ff_age;
+    }
+
+    public void setFf_age(String ff_age) {
+        this.ff_age = ff_age == null ? null : ff_age.trim();
     }
 }
