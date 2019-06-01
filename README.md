@@ -13,7 +13,8 @@
 11，lombook,commons-lang3，fastJson等工具包集成
 12,自定义日志管理策略，配置目前放在config文件夹下面，移动到resouces下面自动生效
 13，自定义run.sh脚本,根据liunx环境，需要修改jar路径和jdk路径
-
+14,json数据透出管理
+15,统一的消息处理方法。
 运行所需要的系统环境配置
 jdk 1.8以上
 项目下载到本地可以直接mvn clean install

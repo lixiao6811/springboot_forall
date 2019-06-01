@@ -1,4 +1,4 @@
-package com.example.springbootpro.filter;
+package com.example.springbootpro.config;
 
 /**
  * Created by 97434 on 2018/12/28.

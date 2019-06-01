@@ -1,4 +1,4 @@
-package com.example.springbootpro.filter;
+package com.example.springbootpro.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -19,18 +18,18 @@ import javax.sql.DataSource;
  * Created by 97434 on 2018/12/27.
  */
 @Configuration
-@MapperScan(basePackages = "com.example.springbootpro.mapper", sqlSessionTemplateRef = "masterSqlSessionTemplate")
-public class MasterDatasourceConfig {
+@MapperScan(basePackages = "com.example.springbootpro.slaveMapper", sqlSessionTemplateRef = "slaveSqlSessionTemplate")
+public class SlaveDatasourceConfig {
 
     /**
-     * 配置数据数据源 master
+     * 配置数据数据源 slave
      *
      * @return
      */
-    @Bean(name = "masterDatasource")
-    @ConfigurationProperties(prefix = "spring.datasource.master")
-    @Primary
-    public DataSource masterDatasource() {
+    @Bean(name = "slaveDatasource")
+    @ConfigurationProperties(prefix = "spring.datasource.slave")
+//    @Primary
+    public DataSource slaveDatasource() {
         return DataSourceBuilder.create().build();
     }
 
@@ -41,9 +40,9 @@ public class MasterDatasourceConfig {
      * @return
      * @throws Exception
      */
-    @Bean(name = "masterSqlSessionFactory")
-    @Primary
-    public SqlSessionFactory masterSqlSessionFactory(@Qualifier("masterDatasource") DataSource dataSource) throws Exception {
+    @Bean(name = "slaveSqlSessionFactory")
+//    @Primary
+    public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDatasource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapping/*.xml"));
@@ -57,11 +56,12 @@ public class MasterDatasourceConfig {
      * @param dataSource
      * @return
      */
-    @Bean(name = "masterTransactionManger")
-    @Primary
-    public DataSourceTransactionManager masterTransactionManger(@Qualifier("masterDatasource") DataSource dataSource) {
+    @Bean(name = "slaveTransactionManger")
+//    @Primary
+    public DataSourceTransactionManager slaveTransactionManger(@Qualifier("slaveDatasource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
+
 
     /**
      * 模版
@@ -70,9 +70,11 @@ public class MasterDatasourceConfig {
      * @return
      * @throws Exception
      */
-    @Bean(name = "masterSqlSessionTemplate")
-    @Primary
-    public SqlSessionTemplate masterSqlSessionTemplate(@Qualifier("masterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+    @Bean(name = "slaveSqlSessionTemplate")
+//    @Primary
+    public SqlSessionTemplate slaveSqlSessionTemplate(@Qualifier("slaveSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+
 }
+

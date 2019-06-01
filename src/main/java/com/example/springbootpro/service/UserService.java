@@ -1,6 +1,7 @@
 package com.example.springbootpro.service;
 
 import com.example.springbootpro.entity.User;
+import com.example.springbootpro.tools.R;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    int addUser(User user);
+    R addUser(User user);
 
-    List<User> findAllUser(int pageNum, int pageSize);
+    R findAllUser(int pageNum, int pageSize);
 }
