@@ -1,12 +1,8 @@
 package com.example.springbootpro.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -20,8 +16,8 @@ import java.util.Date;
 
 //@Configuration
 @WebFilter(filterName="FilterController",urlPatterns="/user/*")
+@Slf4j
 public class FilterController implements Filter {
-    public static final Logger logger = LoggerFactory.getLogger(FilterController.class);
 
     @Value("${sign.app_secret}")
     private String appSecret;
@@ -31,13 +27,13 @@ public class FilterController implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.info("过滤器初始化");
+        log.info("过滤器初始化");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-       logger.info("自定义拦截器");
-       logger.info(appKey+"111111111111222222"+appSecret);
+        log.info("自定义拦截器");
+        log.info(appKey+":::::::::::::::"+appSecret);
         HttpServletResponse rsp = (HttpServletResponse) servletResponse;
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         servletResponse.setContentType("text/html;charset=utf-8");// 页面字符的设置
@@ -48,16 +44,16 @@ public class FilterController implements Filter {
         if (rappkey == null || "".equals(rappkey) || timestamp == null || "".equals(timestamp) ||
                 sign == null || "".equals(sign)) {
             PrintWriter out = rsp.getWriter();
-            logger.info(req.getRequestURI() + " 未正确设定系统级鉴权参数!");
+            log.info(req.getRequestURI() + " 未正确设定系统级鉴权参数!");
             out.write("{\"is_success\":false,\"message\":\"未正确设定系统级鉴权参数!\"}");
             return;
         } else {
             if (checkSign(rappkey, timestamp, sign)) {//签名有效
-                logger.info(req.getRequestURI() + "签名有效!");
+                log.info(req.getRequestURI() + "签名有效!");
                 filterChain.doFilter(req, rsp);
             } else {//签名无效
                 PrintWriter out = rsp.getWriter();
-                logger.info(req.getRequestURI() + "调用签名失败!");
+                log.info(req.getRequestURI() + "调用签名失败!");
                 out.write("{\"is_success\":false,\"message\":\"调用签名失败\"}");
                 return;
             }
@@ -66,7 +62,7 @@ public class FilterController implements Filter {
     }
     @Override
     public void destroy() {
-        logger.info("过滤器销毁");
+        log.info("过滤器销毁");
     }
     /**
      * 验证签名
@@ -79,7 +75,7 @@ public class FilterController implements Filter {
     private boolean checkSign(String rappKey, String timestamp, String sign) throws UnsupportedEncodingException {
         long now = (new Date()).getTime();
         if (Math.abs(now - Long.valueOf(timestamp)) > 1800000) { //3*60*1000毫秒=180000毫秒=3分钟
-            logger.info("时间戳不在合法范围内. Serv:" + now + "  Cli:" + timestamp);
+            log.info("时间戳不在合法范围内. Serv:" + now + "  Cli:" + timestamp);
             return false;//时间戳不在合法范围内（±3分钟）
         }
         String vsign = createSign(appSecret, timestamp);
@@ -87,7 +83,7 @@ public class FilterController implements Filter {
             return false;
         }
         if (!sign.equals(vsign)) {
-            logger.info("sign=" + sign + " vsign=" + vsign);
+            log.info("sign=" + sign + " vsign=" + vsign);
             return false;
         }
         return true;

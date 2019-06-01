@@ -18,29 +18,31 @@ import javax.sql.DataSource;
  * Created by 97434 on 2018/12/27.
  */
 @Configuration
-@MapperScan(basePackages = "com.example.springbootpro.benefitMapper" ,sqlSessionTemplateRef = "slaveSqlSessionTemplate")
+@MapperScan(basePackages = "com.example.springbootpro.slaveMapper", sqlSessionTemplateRef = "slaveSqlSessionTemplate")
 public class SlaveDatasourceConfig {
 
     /**
      * 配置数据数据源 slave
+     *
      * @return
      */
     @Bean(name = "slaveDatasource")
-    @ConfigurationProperties(prefix = "spring.datasource.benefit")
+    @ConfigurationProperties(prefix = "spring.datasource.slave")
 //    @Primary
-    public DataSource slaveDatasource(){
+    public DataSource slaveDatasource() {
         return DataSourceBuilder.create().build();
     }
 
     /**
      * 配置session工厂
+     *
      * @param dataSource
      * @return
      * @throws Exception
      */
     @Bean(name = "slaveSqlSessionFactory")
 //    @Primary
-    public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDatasource") DataSource dataSource) throws  Exception{
+    public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDatasource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapping/*.xml"));
@@ -50,25 +52,27 @@ public class SlaveDatasourceConfig {
 
     /**
      * 配置事务管理器
+     *
      * @param dataSource
      * @return
      */
     @Bean(name = "slaveTransactionManger")
 //    @Primary
-    public DataSourceTransactionManager slaveTransactionManger(@Qualifier("slaveDatasource") DataSource dataSource){
+    public DataSourceTransactionManager slaveTransactionManger(@Qualifier("slaveDatasource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 
 
     /**
      * 模版
+     *
      * @param sqlSessionFactory
      * @return
      * @throws Exception
      */
     @Bean(name = "slaveSqlSessionTemplate")
 //    @Primary
-    public SqlSessionTemplate slaveSqlSessionTemplate(@Qualifier("slaveSqlSessionFactory")SqlSessionFactory sqlSessionFactory) throws Exception{
+    public SqlSessionTemplate slaveSqlSessionTemplate(@Qualifier("slaveSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 

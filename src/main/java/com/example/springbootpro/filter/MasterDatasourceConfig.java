@@ -28,7 +28,7 @@ public class MasterDatasourceConfig {
      * @return
      */
     @Bean(name = "masterDatasource")
-    @ConfigurationProperties(prefix = "spring.datasource.ccms")
+    @ConfigurationProperties(prefix = "spring.datasource.master")
     @Primary
     public DataSource masterDatasource() {
         return DataSourceBuilder.create().build();

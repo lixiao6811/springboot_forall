@@ -47,9 +47,7 @@ spring:
 
 
 scheduled:
-  pointJob: 0 */10 * * * ?
-  pointMember: 0 */10 * * * ?
-  pushMember: 0 */5 * * * ?
+  timing: 0 */1 * * * ?
 #pagehelper分页插件
 pagehelper:
   helperDialect: mysql
@@ -65,14 +63,3 @@ logging:
   level:
     com.example.springbootpro.mapper: DEBUG
     com.example.springbootpro.benefitMapper: DEBUG
-loyalty:
-  buildCardUrl: http://ual.pecachecahe.saasproj.shuyun.com/loyalty2-mg/1.0/if/members
-  memberAndGradeUrl: http://ual.pecchecache.saasproj.shuyun.com/loyalty2-mg/1.0
-  secret: asdfghjksl12
-  etoUrl: https://ecrm-cachcache.woaap.com/api/send-template-message
-ur:
-  sendCoupon: https://api.cche-cache.cn/restur/createCoupon
-  postCustomer: https://apicache-cache.cn/restur/postCustomer
-  keyId: 75d36629-6cbc-42e4-7ee-5920910b7a30
-benefit:
-  createCoupon: http://beneft.pecachecache.saasproj.shuyun.com/benefit/1.0/benefit/platform/userBcode/send

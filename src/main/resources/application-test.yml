@@ -57,21 +57,8 @@ sign:
   app_secret: 32bbd3f271f236754d424d443e80fbe4
   memberAppsecret: n#gu1a&a5togt1zqa^fs$$8lrgl^u*nc
 scheduled:
-  pointJob: 0 */100 * * * ?
-  pushMember: 0 */200 * * * ?
-  pointMember: 0 */100 * * * ?
+  timing: 0 */1 * * * ?
 logging:
   level:
     com.example.springbootpro.mapper: DEBUG
     com.example.springbootpro.benefitMapper: DEBUG
-loyalty:
-  buildCardUrl: http://ual.tecacecache.saasproj.shuyun.com/loyalty2-mg/1.0/if/members
-  memberAndGradeUrl: http://ual.teachecache.saasproj.shuyun.com/loyalty2-mg/1.0
-  secret: asdfghjksl12
-  etoUrl: https://ecrm-cc-test.waap.com/api/send-template-message
-ur:
-  sendCoupon: https://staging-ap.cache-cache.cn/restur/createCoupon
-  postCustomer: https://staging-pi.cache-cache.cn/restur/postCustomer
-  keyId: 7c8a86a0-dfe8-4aa-a77f-464b3f9493ec
-benefit:
-  createCoupon: http://beneit.tecachecache.saasproj.shuyun.com/benefit/1.0/benefit/platform/userBcode/send
