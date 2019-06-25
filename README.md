@@ -1,5 +1,4 @@
-# superRepository
-这个项目是spring boot微服务项目，主要功能点展示
+##这个项目是spring boot微服务项目，主要功能点展示
 1，集成了mybatis 
 2，generator，一键生成mapper文件
 3，定时任务
@@ -15,8 +14,10 @@
 13，自定义run.sh脚本,根据liunx环境，需要修改jar路径和jdk路径
 14,json数据透出管理
 15,统一的消息处理方法。
-运行所需要的系统环境配置
-jdk 1.8以上
+##运行所需要的系统环境配置
+JDK1.8
+MySQL5.5+
+Maven3.0+
 项目下载到本地可以直接mvn clean install
 
 
