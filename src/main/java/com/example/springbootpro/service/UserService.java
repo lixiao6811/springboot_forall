@@ -12,5 +12,7 @@ public interface UserService {
 
     R addUser(User user);
 
+    R testApi(User user);
+
     R findAllUser(int pageNum, int pageSize);
 }

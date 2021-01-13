@@ -33,6 +33,12 @@ public class UserController {
     }
 
 
+    @PostMapping("/testApi")
+    public Object testApi(@Valid @RequestBody User param, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return R.error(-1, bindingResult.getFieldError().getDefaultMessage());
+        return userService.testApi(param);
+    }
 
 
 }
